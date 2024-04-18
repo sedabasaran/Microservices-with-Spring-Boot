@@ -1,5 +1,6 @@
 package com.tutorial.employeeservice.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,10 +12,20 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long departmentId;
+
+	@Column(nullable = false)
 	private String firstName;
+
+	@Column(nullable = false)
 	private String lastName;
+
+	@Column(nullable = false)
 	private String email;
+
+	@Column(nullable = false)
 	private int age;
+
+	@Column(nullable = false)
 	private String position;
 
 	public Employee() {

@@ -3,26 +3,22 @@ package com.tutorial.employeeservice.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import com.tutorial.employeeservice.model.Employee;
 
 public interface EmployeeService {
-	List<Employee> employees = new ArrayList<>();
 
-	public Employee add(Employee employee);
+	List<Employee> getAllEmploye = new ArrayList<>();
 
-	public Optional<Employee> findById(Long id);
-
-	public List<Employee> findAll();
+	public Optional<Employee> getEmployeeById(Long id);
 
 	public List<Employee> findByDepartment(Long departmentId);
 
-	public List<Employee> getAll();
-	
-    public List<Employee> getAllEmployees();
+	public Employee saveEmployee(Employee employee);
 
-    public Employee getEmployeeById(Long id);
+	Employee updateEmployee(Long id, Employee employee);
 
-    public Employee saveEmployee(Employee employee);
+	void deleteEmployee(Long id);
 
-    public void deleteEmployee(Long id);
+	List<Employee> getAllEmployee();
 }

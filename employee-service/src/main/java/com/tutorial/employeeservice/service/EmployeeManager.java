@@ -20,42 +20,19 @@ public class EmployeeManager implements EmployeeService {
 	}
 
 	@Override
-	public Employee add(Employee employee) {
-		employeeDao.save(employee);
-		return employee;
+	public List<Employee> getAllEmployee() {
+		return employeeDao.findAll();
 	}
 
 	@Override
-	public Optional<Employee> findById(Long id) {
+	public Optional<Employee> getEmployeeById(Long id) {
 		return Optional.ofNullable(employeeDao.findById(id).filter(a -> a.id().equals(id)).orElseThrow());
-	}
-
-	@Override
-	public List<Employee> findAll() {
-
-		return employees;
 	}
 
 	@Override
 	public List<Employee> findByDepartment(Long departmentId) {
 
-		return employees.stream().filter(a -> a.getDepartmentId().equals(departmentId)).toList();
-	}
-
-	@Override
-	public List<Employee> getAll() {
-
-		return this.employeeDao.findAll();
-	}
-
-	@Override
-	public List<Employee> getAllEmployees() {
-		return employeeDao.findAll();
-	}
-
-	@Override
-	public Employee getEmployeeById(Long id) {
-		return employeeDao.findById(id).orElseThrow(() -> new IllegalArgumentException("Employee not found"));
+		return getAllEmploye.stream().filter(a -> a.getDepartmentId().equals(departmentId)).toList();
 	}
 
 	@Override
@@ -64,8 +41,19 @@ public class EmployeeManager implements EmployeeService {
 	}
 
 	@Override
-	 public void deleteEmployee(Long id) {
+	public Employee updateEmployee(Long id, Employee employee) {
+		Employee existingEmployee = employeeDao.findById(id).orElse(null);
+		if (existingEmployee != null) {
+			existingEmployee.setFirstName(employee.getFirstName());
+			existingEmployee.setLastName(employee.getLastName());
+			return employeeDao.save(existingEmployee);
+		}
+		return null;
+	}
+
+	@Override
+	public void deleteEmployee(Long id) {
 		employeeDao.deleteById(id);
-    }
+	}
 
 }

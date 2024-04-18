@@ -38,4 +38,15 @@ public class DepartmentManager implements DepartmentService {
 		return departmentRepository.findAll();
 	}
 
+	@Override
+	public Department updateDepartment(Long id, Department department) {
+		Department existingDepartment = departmentRepository.findById(id);
+		if (existingDepartment != null) {
+			existingDepartment.setId(department.getId());
+			existingDepartment.setName(department.getName());
+			return departmentRepository.addDepartment(existingDepartment);
+		}
+		return null;
+	}
+
 }

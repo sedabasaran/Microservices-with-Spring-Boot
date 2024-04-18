@@ -1,6 +1,8 @@
 package com.tutorial.employeeservice.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +33,11 @@ public class EmployeeController {
 
 	@GetMapping
 	public List<Employee> getAllEmployees() {
-		return employeeService.getAllEmployees();
+		return employeeService.getAllEmployee();
 	}
 
 	@GetMapping("/{id}")
-	public Employee getEmployeeById(@PathVariable Long id) {
+	public Optional<Employee> getEmployeeById(@PathVariable Long id) {
 		return employeeService.getEmployeeById(id);
 	}
 
