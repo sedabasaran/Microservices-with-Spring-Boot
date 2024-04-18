@@ -28,14 +28,16 @@ public class WebClientConfig {
                 .build();
     }
 
-    @Bean
+    @SuppressWarnings("removal")
+	@Bean
      EmployeeClient employeeClient() {
-        @SuppressWarnings("removal")
 		HttpServiceProxyFactory httpServiceProxyFactory
                 = HttpServiceProxyFactory
                 .builder(WebClientAdapter.forClient(employeeWebClient()))
                 .build();
         return httpServiceProxyFactory.createClient(EmployeeClient.class);
     }
+    
+
     
 }

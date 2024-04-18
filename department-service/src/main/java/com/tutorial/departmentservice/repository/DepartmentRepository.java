@@ -9,7 +9,8 @@ import com.tutorial.departmentservice.model.Department;
 
 @Repository
 public class DepartmentRepository {
-	private List<Department> departments = new ArrayList<>();
+
+	private List<Department> departments = new ArrayList<>();;
 
 	public Department addDepartment(Department department) {
 		departments.add(department);
@@ -17,8 +18,11 @@ public class DepartmentRepository {
 	}
 
 	public Department findById(Long id) {
-		return departments.stream().filter(department -> department.getId().equals(id))
-				.findFirst().orElseThrow();
+		return departments.stream().filter(department -> department.getId().equals(id)).findFirst().orElseThrow();
+	}
+
+	public void deleteDepartment(Long id) {
+		deleteDepartment(id);
 	}
 
 	public List<Department> findAll() {
